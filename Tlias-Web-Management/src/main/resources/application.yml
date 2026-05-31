@@ -1,0 +1,17 @@
+spring:
+
+  # 项目名称
+  application:
+    name: Tlias-Web-Management
+
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/tlias
+    username: root
+    password: 123456
+
+  # 数据库日志
+  mybatis:
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
