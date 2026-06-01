@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.tliaswebmanagement.Mapper.DepartmentMapper">
+
+    <update id="Update">
+        update department set name=#{name},update_time=#{updateTime} where id=#{id}
+    </update>
+
+    <select id="findAll" resultType="org.example.tliaswebmanagement.EntityClass.Department">
+        select id,name,create_time,update_time from department order by update_time desc
+    </select>
+
+    <select id="queryById" resultType="org.example.tliaswebmanagement.EntityClass.Department">
+        select * from department where id = #{id} order by update_time desc
+    </select>
+
+    <delete id="deleteById">
+        delete from department where id = #{id}
+    </delete>
+
+    <insert id="insertByName">
+        insert into department(name,create_time,update_time) values (#{name},#{createTime},#{updateTime})
+    </insert>
+
+</mapper>

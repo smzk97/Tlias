@@ -10,8 +10,8 @@ spring:
     username: root
     password: 123456
 
-  # 数据库日志
-  mybatis:
-    configuration:
-      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
+# 数据库日志
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:CrudXml/*.xml

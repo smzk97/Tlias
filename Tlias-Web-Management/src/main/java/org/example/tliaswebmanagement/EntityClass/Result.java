@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Result {
-    private Integer id; // 编码，成功：1，失败：0
+    private Integer code; // 编码，成功：1，失败：0
     private String msg; // 错误/失败信息
     private Object data; // 数据
 
