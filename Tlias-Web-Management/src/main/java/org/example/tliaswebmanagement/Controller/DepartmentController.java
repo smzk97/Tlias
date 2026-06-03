@@ -10,6 +10,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RequestMapping("/department")
 public class DepartmentController {
 
     private DepartmentService departmentService;
