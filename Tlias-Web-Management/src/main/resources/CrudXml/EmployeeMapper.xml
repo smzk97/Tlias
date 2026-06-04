@@ -4,5 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.tliaswebmanagement.Mapper.EmployeeMapper">
 
+    <select id="queryByParametersTotal" resultType="long">
+        select
+            count(*)
+        from
+            employee em
+                left join
+            department dp
+            on dp.id = em.department_id
+    </select>
 
+    <select id="queryByParameters" resultType="org.example.tliaswebmanagement.EntityClass.Employee">
+        select
+            em.id,user_name,em.name,gender,image,job,salary,entry_date,department_id,dp.name,dp.create_time,dp.update_time
+        from
+            employee em
+                left join
+            department dp
+            on dp.id = em.department_id
+            limit #{start},#{pageSize}
+    </select>
 </mapper>
