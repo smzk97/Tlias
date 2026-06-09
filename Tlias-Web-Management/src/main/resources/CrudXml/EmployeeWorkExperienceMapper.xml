@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.tliaswebmanagement.Mapper.EmployeeWorkExperienceMapper">
+    <insert id="EmployeeWorkExperienceDataInsert">
+        insert into employee_work_experience(
+            employeeId,start_time,end_time,company,job
+        )
+        values
+            <foreach collection="employeeWorkExperience" item="em" separator=",">
+                (#{em.employeeId},#{em.startTime},#{em.endTime},#{em.company},#{em.job})
+            </foreach>
+    </insert>
+</mapper>
