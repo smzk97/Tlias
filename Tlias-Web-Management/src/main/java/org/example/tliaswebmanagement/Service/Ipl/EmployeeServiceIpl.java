@@ -11,6 +11,7 @@ import org.example.tliaswebmanagement.Mapper.EmployeeWorkExperienceMapper;
 import org.example.tliaswebmanagement.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
@@ -36,6 +37,7 @@ public class EmployeeServiceIpl implements EmployeeService {
         return new EmployeeQueryData(PageData.getTotal(),PageData.getResult());
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void dataInsert(Employee employee) {
         employee.setCreateTime(LocalDateTime.now());
