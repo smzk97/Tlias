@@ -7,8 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional(propagation = Propagation.REQUIRES_NEW)
 @Mapper
 public interface EmployeeWorkExperienceMapper {
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     void EmployeeWorkExperienceDataInsert(List<EmployeeWorkExperience> employeeWorkExperience);
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    void dataDelete(List<Integer> ids);
+
 }

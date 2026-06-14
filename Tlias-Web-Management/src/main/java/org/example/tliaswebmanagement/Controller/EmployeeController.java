@@ -37,4 +37,16 @@ public class EmployeeController {
         employeeService.dataInsert(employee);
         return Result.Success();
     }
+
+    @DeleteMapping("")
+    public Result DataDelete(@RequestParam List<Integer> ids){
+        employeeService.dataDelete(ids);
+        return Result.Success();
+    }
+
+    @GetMapping("/{id}")
+    public Result DataQueryById(@PathVariable Integer id){
+        Employee employee = employeeService.dataQueryById(id);
+        return Result.Success(employee);
+    }
 }

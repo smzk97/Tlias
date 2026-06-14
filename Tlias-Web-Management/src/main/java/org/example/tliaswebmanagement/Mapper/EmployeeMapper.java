@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.example.tliaswebmanagement.EntityClass.Employee;
 import org.example.tliaswebmanagement.EntityClass.EmployeeQueryData;
 import org.example.tliaswebmanagement.EntityClass.EmployeeQueryParam;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,4 +16,9 @@ public interface EmployeeMapper {
     List<Employee> queryByParameters(EmployeeQueryParam employeeQueryParam);
 
     void EmployeeDataInsert(Employee employee);
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    void dataDelete(List<Integer> ids);
+
+    Employee dataQueryById(Integer id);
 }

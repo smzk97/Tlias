@@ -12,4 +12,12 @@
                 (#{em.employeeId},#{em.startTime},#{em.endTime},#{em.company},#{em.job})
             </foreach>
     </insert>
+    <delete id="dataDelete">
+        delete from
+            employee_work_experience
+        where employeeId in
+            <foreach collection="ids" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+     </delete>
 </mapper>

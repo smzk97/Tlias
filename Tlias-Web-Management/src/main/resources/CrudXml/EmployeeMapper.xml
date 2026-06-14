@@ -13,6 +13,15 @@
         )
     </insert>
 
+    <delete id="dataDelete">
+        delete from
+            employee
+        where id in
+            <foreach collection="ids" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+    </delete>
+
     <select id="queryByParameters" resultType="org.example.tliaswebmanagement.EntityClass.Employee">
         select
             em.id,user_name,em.name,gender,image,job,salary,entry_date,department_id,dp.name,dp.create_time,dp.update_time
@@ -32,6 +41,49 @@
                 and em.create_time between #{beginTime} and #{endTime}
             </if>
         </where>
+    </select>
+
+    <resultMap id="empResultMap" type="org.example.tliaswebmanagement.EntityClass.Employee">
+
+        <id column="id" property="id" />
+        <result column="user_name" property="userName" />
+        <result column="pass_word" property="passWord" />
+        <result column="name" property="name" />
+        <result column="gender" property="gender" />
+        <result column="phone_number" property="phoneNumber" />
+        <result column="job" property="job" />
+        <result column="salary" property="salary" />
+        <result column="image" property="image" />
+        <result column="department_id" property="departmentId" />
+        <result column="entry_date" property="entryDate" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <collection property="employeeWorkExperiences" ofType="org.example.tliaswebmanagement.EntityClass.EmployeeWorkExperience">
+            <id column="em_we_id" property="id" />
+            <result column="employeeId" property="employeeId" />
+            <result column="start_time" property="startTime" />
+            <result column="end_time" property="endTime" />
+            <result column="company" property="company" />
+            <result column="em_we_job" property="job" />
+        </collection>
+
+    </resultMap>
+
+    <select id="dataQueryById" resultMap="empResultMap">
+        select
+            em.*,
+            em_we.id em_we_id,
+            em_we.employeeId,
+            em_we.company,
+            em_we.job em_we_job,
+            em_we.start_time,
+            em_we.end_time
+        from
+            employee em
+        left join
+            employee_work_experience em_we
+        on em.id = em_we.employeeId
+        where em.id = #{id}
     </select>
 
 </mapper>

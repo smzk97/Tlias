@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ public class EmployeeServiceIpl implements EmployeeService {
     private EmployeeMapper employeeMapper;
     private EmployeeWorkExperienceMapper employeeWorkExperienceMapper;
     @Autowired
-    public EmployeeServiceIpl(EmployeeMapper employeeMapper,EmployeeWorkExperienceMapper employeeWorkExperienceMapper) {
+    public EmployeeServiceIpl(EmployeeMapper employeeMapper, EmployeeWorkExperienceMapper employeeWorkExperienceMapper) {
         this.employeeMapper = employeeMapper;
         this.employeeWorkExperienceMapper = employeeWorkExperienceMapper;
     }
@@ -53,6 +54,19 @@ public class EmployeeServiceIpl implements EmployeeService {
             employeeWorkExperienceMapper.EmployeeWorkExperienceDataInsert(employeeWorkExperiences);
         }
 
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void dataDelete(@RequestParam List<Integer> ids) {
+        employeeMapper.dataDelete(ids);
+        employeeWorkExperienceMapper.dataDelete(ids);
+    }
+
+    @Override
+    public Employee dataQueryById(Integer id) {
+        Employee employee = employeeMapper.dataQueryById(id);
+        return employee;
     }
 
 }

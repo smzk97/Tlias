@@ -8,10 +8,15 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public interface EmployeeService {
     EmployeeQueryData queryByParameters(EmployeeQueryParam employeeQueryParam);
 
     void dataInsert(Employee employee);
+
+    void dataDelete(List<Integer> ids);
+
+    Employee dataQueryById(Integer id);
 }
