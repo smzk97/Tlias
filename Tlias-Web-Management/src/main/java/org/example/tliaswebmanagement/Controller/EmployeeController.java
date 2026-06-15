@@ -26,27 +26,58 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    /**
+     * 根据翻页参数查询所有员工信息
+     * @param employeeQueryParam 查询对象
+     * @return 成功结果对象
+     */
     @GetMapping("/list")
     public Result QueryList(EmployeeQueryParam employeeQueryParam){
         EmployeeQueryData employeeQueryData = employeeService.queryByParameters(employeeQueryParam);
         return Result.Success(employeeQueryData);
     }
 
+    /**
+     * 新增员工基本信息
+     * @param employee 新增的员工信息，通过请求体传递
+     * @return 成功结果对象
+     */
     @PostMapping("")
     public Result DataInsert(@RequestBody Employee employee){
         employeeService.dataInsert(employee);
         return Result.Success();
     }
 
+    /**
+     * 根据id值删除员工信息
+     * @param ids 员工id列表
+     * @return 成功结果对象
+     */
     @DeleteMapping("")
     public Result DataDelete(@RequestParam List<Integer> ids){
         employeeService.dataDelete(ids);
         return Result.Success();
     }
 
+    /**
+     * 根据id值查询员工信息
+     * @param id 员工id值
+     * @return 成功结果对象
+     */
     @GetMapping("/{id}")
     public Result DataQueryById(@PathVariable Integer id){
         Employee employee = employeeService.dataQueryById(id);
         return Result.Success(employee);
+    }
+
+    /**
+     * 更新员工基本信息
+     * @param employee 员工信息对象
+     * @return 成功结果对象
+     */
+    @PutMapping("")
+    public Result DataUpdate(@RequestBody Employee employee){
+        employeeService.dataUpdate(employee);
+        return Result.Success();
     }
 }

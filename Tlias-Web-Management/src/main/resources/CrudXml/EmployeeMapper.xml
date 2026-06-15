@@ -13,6 +13,49 @@
         )
     </insert>
 
+    <update id="dataUpdate">
+        update employee
+            set
+                <if test="userName != null and userName != ''">
+                    user_name = #{userName},
+                </if>
+                <if test="passWord != null and passWord != ''">
+                    pass_word = #{passWord},
+                </if>
+                <if test="name != null and name != ''">
+                    name = #{name},
+                </if>
+                <if test="gender != null and gender != ''">
+                    gender = #{gender},
+                </if>
+                <if test="phoneNumber != null and phoneNumber != ''">
+                    phone_number = #{phoneNumber},
+                </if>
+                <if test="job != null and job != ''">
+                    job = #{job},
+                </if>
+                <if test="salary != null and salary != ''">
+                    salary = #{salary},
+                </if>
+                <if test="image != null and image != ''">
+                    image = #{image},
+                </if>
+                <if test="departmentId != null and departmentId != ''">
+                    department_id = #{departmentId},
+                </if>
+                <if test="entryDate != null">
+                    entry_date = #{entryDate},
+                </if>
+                <if test="createTime != null">
+                    create_time = #{createTime},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime}
+                </if>
+            where
+                id = #{id}
+    </update>
+
     <delete id="dataDelete">
         delete from
             employee

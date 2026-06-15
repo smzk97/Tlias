@@ -12,6 +12,8 @@ import java.util.List;
 
 @Service
 public interface EmployeeService {
+    void dataUpdate(Employee employee);
+
     EmployeeQueryData queryByParameters(EmployeeQueryParam employeeQueryParam);
 
     void dataInsert(Employee employee);

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -69,4 +70,17 @@ public class EmployeeServiceIpl implements EmployeeService {
         return employee;
     }
 
+    @Override
+    public void dataUpdate(Employee employee){
+        employee.setUpdateTime(LocalDateTime.now());
+        employeeMapper.dataUpdate(employee);
+        List<EmployeeWorkExperience> employeeWorkExperience = employee.getEmployeeWorkExperiences();
+        if(!CollectionUtils.isEmpty(employeeWorkExperience)){
+            employeeWorkExperience.forEach(emwe->{
+                emwe.setEmployeeId(employee.getId());
+            });
+        }
+        employeeWorkExperienceMapper.dataDelete(Arrays.asList(employee.getId()));
+        employeeWorkExperienceMapper.EmployeeWorkExperienceDataInsert(employeeWorkExperience);
+    }
 }

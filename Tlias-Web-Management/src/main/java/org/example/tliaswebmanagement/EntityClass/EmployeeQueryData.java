@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+// 查询返回对象
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeQueryData {
-    private long total;
-    private List<Employee> rows;
+    private long total;           // 查询返回总数
+    private List<Employee> rows;  // 查询返回的数据
 }

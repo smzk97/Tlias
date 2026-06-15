@@ -4,9 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 返回字段信息实体类
- */
+// 返回字段信息实体类
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

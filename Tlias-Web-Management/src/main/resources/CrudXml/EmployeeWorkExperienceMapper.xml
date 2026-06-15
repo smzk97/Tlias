@@ -12,6 +12,7 @@
                 (#{em.employeeId},#{em.startTime},#{em.endTime},#{em.company},#{em.job})
             </foreach>
     </insert>
+
     <delete id="dataDelete">
         delete from
             employee_work_experience

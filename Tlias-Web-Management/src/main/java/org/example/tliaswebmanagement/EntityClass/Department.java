@@ -5,9 +5,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.*;
 
-/**
- * 部门信息实体类
- */
+// 部门信息实体类
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

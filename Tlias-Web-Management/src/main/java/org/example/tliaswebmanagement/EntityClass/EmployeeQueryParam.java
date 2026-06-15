@@ -4,20 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
+// 查询参数对象
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeQueryParam {
-    private Integer page = 1;
-    private Integer pageSize = 10;
-    private Integer gender;
-    private String name;
+    private Integer page = 1;            // 查询页数
+    private Integer pageSize = 10;       // 查询页数大小
+    private Integer gender;              // 查询性别
+    private String name;                 // 查询姓名
     @DateTimeFormat(pattern = "yy-MM-dd")
-    private String beginTime;
+    private String beginTime;            // 查询创建时间
     @DateTimeFormat(pattern = "yy-MM-dd")
-    private String endTime;
+    private String endTime;              // 查询更新时间
 }
