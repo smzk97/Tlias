@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.tliaswebmanagement.Mapper.ReportMapper">
+
+    <select id="JobData" resultType="java.util.Map">
+        select
+            case job
+                when 1 then '财务处'
+                when 2 then '学生处'
+                when 3 then '国际处'
+                when 4 then '教务处'
+                when 5 then '后勤处'
+                end job,
+            count(*) num
+        FROM
+            employee
+        group by job
+        order by num;
+    </select>
+
+    <select id="GenderData" resultType="java.util.Map">
+        select
+            case gender
+                when 0 then '女生'
+                when 1 then '男生'
+                end gender,
+            count(*) num
+        from
+            employee
+        group by gender
+        order by num;
+    </select>
+</mapper>
