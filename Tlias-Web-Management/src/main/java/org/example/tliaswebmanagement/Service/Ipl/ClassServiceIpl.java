@@ -22,10 +22,22 @@ public class ClassServiceIpl implements ClassService {
     }
 
     @Override
-    public ClassQueryData findAll(ClassQueryParam classQueryParam){
+    public ClassQueryData findAllByPage(ClassQueryParam classQueryParam){
         PageHelper.startPage(classQueryParam.getPage(),classQueryParam.getPageSize());
-        List<Class> classListData = classMapper.findAll(classQueryParam);
+        List<Class> classListData = classMapper.findAllByPage(classQueryParam);
         Page<Class> pageData = (Page<Class>) classListData;
         return new ClassQueryData(pageData.getTotal(),pageData.getResult());
+    }
+
+    @Override
+    public List<Class> findAll() {
+        List<Class> classListData = classMapper.findAll();
+        return classListData;
+    }
+
+    @Override
+    public Class findById(Integer id) {
+        Class classData = classMapper.findById(id);
+        return classData;
     }
 }

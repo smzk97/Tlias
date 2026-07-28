@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.tliaswebmanagement.Mapper.ClassMapper">
 
-    <select id="findAll" resultType="org.example.tliaswebmanagement.EntityClass.Class">
+    <select id="findAllByPage" resultType="org.example.tliaswebmanagement.EntityClass.Class">
         select
             id,name,room,begin_date,end_date,master_id,create_time,update_time,
             case
@@ -23,5 +23,32 @@
             </if>
         </where>
     </select>
+
+    <select id="findAll" resultType="org.example.tliaswebmanagement.EntityClass.Class">
+        select
+            id,name,room,begin_date,end_date,master_id,create_time,update_time,
+            case
+                when begin_date &lt; localtimestamp and localtimestamp &lt; end_date then '已开班'
+                when begin_date &gt; localtimestamp then '未开班'
+                when localtimestamp &gt; end_date then '已结课'
+                end status
+        from
+            class
+    </select>
+
+    <select id="findById" resultType="org.example.tliaswebmanagement.EntityClass.Class">
+        select
+            id,name,room,begin_date,end_date,master_id,create_time,update_time,
+            case
+                when begin_date &lt; localtimestamp and end_date &gt; localtimestamp then '已开班'
+                when begin_date &gt; localtimestamp then '未开班'
+                when localtimestamp &gt; end_date then '已结课'
+                end status
+        from
+            class
+        where
+            id=#{id}
+    </select>
+
 
 </mapper>

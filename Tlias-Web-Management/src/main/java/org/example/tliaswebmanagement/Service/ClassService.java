@@ -8,5 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ClassService {
-    ClassQueryData findAll(ClassQueryParam classQueryParam);
+    ClassQueryData findAllByPage(ClassQueryParam classQueryParam);
+    List<Class> findAll();
+    Class findById(Integer id);
 }
