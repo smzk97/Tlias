@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.tliaswebmanagement.Mapper.ClassMapper">
+
+    <select id="findAll" resultType="org.example.tliaswebmanagement.EntityClass.Class">
+        select
+            id,name,room,begin_date,end_date,master_id,create_time,update_time,
+            case
+                when begin_date &lt; localtimestamp and localtimestamp &lt; end_date then '已开班'
+                when begin_date &gt; localtimestamp then '未开班'
+                when localtimestamp &gt; end_date then '已结课'
+            end status
+        from
+            class
+        <where>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="beginTime != null and endTime != null">
+                and end_date between #{beginTime} and #{endTime}
+            </if>
+        </where>
+    </select>
+
+</mapper>

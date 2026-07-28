@@ -16,5 +16,10 @@ public interface ReportMapper {
      * @return
      */
     List<Map<String,Object>> JobData();
+
+    /**
+     * 查询性别统计数据
+     * @return
+     */
     List<Map<String,Object>> GenderData();
 }
