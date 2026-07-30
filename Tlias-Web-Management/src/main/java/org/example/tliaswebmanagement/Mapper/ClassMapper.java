@@ -27,4 +27,22 @@ public interface ClassMapper {
      * @return 班级数据对象
      */
     Class findById(Integer id);
+
+    /**
+     * 根据ID值删除指定班级列表数据
+     * @param id 班级数据主键
+     */
+    void deleteById(Integer id);
+
+    /**
+     * 根据传递的Class对象新增班级列表数据
+     * @param classData 新增的数据封装为Class对象
+     */
+    void insertData(Class classData);
+
+    /**
+     * 根据传递的Class对象更新班级列表数据
+     * @param classData 更新的数据封装为Class对象
+     */
+    void updateData(Class classData);
 }

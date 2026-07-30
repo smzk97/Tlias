@@ -11,4 +11,7 @@ public interface ClassService {
     ClassQueryData findAllByPage(ClassQueryParam classQueryParam);
     List<Class> findAll();
     Class findById(Integer id);
+    void deleteById(Integer id);
+    void insertData(Class classData);
+    void updateDate(Class classData);
 }

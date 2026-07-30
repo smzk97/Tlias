@@ -28,6 +28,6 @@ public class GlobalExceptionHandler {
         int index = message.indexOf("Duplicate entry");
         String exactMessage = message.substring(index);
         String[] messageLists = exactMessage.split(" ");
-        return Result.Defeat("手机号重复:"+messageLists[2]);
+        return Result.Defeat(messageLists[2] + "重复");
     }
 }

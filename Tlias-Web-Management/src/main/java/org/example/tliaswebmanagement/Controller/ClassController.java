@@ -7,10 +7,8 @@ import org.example.tliaswebmanagement.EntityClass.ClassQueryParam;
 import org.example.tliaswebmanagement.EntityClass.Result;
 import org.example.tliaswebmanagement.Service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -58,5 +56,37 @@ public class ClassController {
         Class classData = classService.findById(id);
         return Result.Success(classData);
     }
+
+    /**
+     * 根据id删除班级列表信息
+     * @param id 班级列表的id值
+     * @return 成功结果对象
+     */
+    @DeleteMapping("/{id}")
+    public Result deleteById(@PathVariable Integer id){
+        log.info("根据id删除班级列表数据");
+        classService.deleteById(id);
+        return Result.Success();
+    }
+
+    /**
+     * 新增班级列表数据
+     * @param classData 新增班级数据对象
+     * @return 成功结果对象
+     */
+    @PostMapping("")
+    public Result insertData(@RequestBody Class classData){
+        log.info("新增班级列表数据");
+        classService.insertData(classData);
+        return Result.Success();
+    }
+
+    @PutMapping("")
+    public Result updateData(@RequestBody Class classData){
+        log.info("更改班级列表数据");
+        classService.updateDate(classData);
+        return Result.Success();
+    }
+
 
 }
