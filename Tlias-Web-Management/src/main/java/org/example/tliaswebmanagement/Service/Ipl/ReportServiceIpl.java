@@ -29,4 +29,9 @@ public class ReportServiceIpl implements ReportService {
     public List<Map<String, Object>> GenderData() {
         return reportMapper.GenderData();
     }
+
+    @Override
+    public List<Map<String, Integer>> DegreeData() {
+        return reportMapper.DegreeData();
+    }
 }

@@ -13,13 +13,19 @@ import java.util.Map;
 public interface ReportMapper {
     /**
      * 查询职位统计数据
-     * @return
+     * @return map列表
      */
     List<Map<String,Object>> JobData();
 
     /**
      * 查询性别统计数据
-     * @return
+     * @return map列表
      */
     List<Map<String,Object>> GenderData();
+
+    /**
+     * 查询学员学历统计数据
+     * @return map列表
+     */
+    List<Map<String,Integer>> DegreeData();
 }

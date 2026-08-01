@@ -8,4 +8,5 @@ import java.util.Map;
 public interface ReportService {
     JobDataResult JobData();
     List<Map<String,Object>> GenderData();
+    List<Map<String,Integer>> DegreeData();
 }

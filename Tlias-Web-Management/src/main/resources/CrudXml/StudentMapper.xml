@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.tliaswebmanagement.Mapper.StudentMapper">
+
+    <insert id="insertStudentData" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            student
+                (name,number,gender,phone,id_card,is_college,address,degree,graduation_date,class_id,create_time,update_time)
+            values
+                (#{name},#{number},#{gender},#{phone},#{idCard},#{isCollege},#{address},#{degree},#{graduationDate},#{classId},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="updateStudentData">
+        update student
+            set
+                name = #{name},
+                number = #{number},
+                phone = #{phone},
+                gender = #{gender},
+                degree = #{degree},
+                class_id = #{classId},
+                <if test="idCard != null and idCard != ''">
+                    id_card = #{idCard},
+                </if>
+                <if test="isCollege != null and isCollege != ''">
+                    is_college = #{isCollege},
+                </if>
+                <if test="address != null and address != ''">
+                    address = #{address},
+                </if>
+                <if test="graduationDate != null">
+                    graduation_date = #{graduationDate},
+                </if>
+                update_time = #{updateTime},
+                violation_count = #{violationCount},
+                violation_score = #{violationScore}
+            where
+                id = #{id}
+    </update>
+
+    <update id="updateStudentViolationData">
+        update student
+            set
+                violation_score = #{score},
+                violation_count = violation_count + 1
+            where
+                id = #{id}
+    </update>
+
+    <delete id="deleteStudentById">
+        delete from student
+            where id in
+            <foreach collection="ids" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+    </delete>
+
+    <select id="findStudentData" resultType="org.example.tliaswebmanagement.EntityClass.Student">
+        select * FROM
+            student
+        <where>
+            <if test="name != null and name != ''">
+                name = #{name} and
+            </if>
+            <if test="degree != null and degree != ''">
+                degree = #{degree} and
+            </if>
+            <if test="classId != null and classId != ''">
+                class_id = #{classId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findStudentById" resultType="org.example.tliaswebmanagement.EntityClass.Student">
+        select * from
+            student
+        where
+            id = #{id}
+    </select>
+
+</mapper>

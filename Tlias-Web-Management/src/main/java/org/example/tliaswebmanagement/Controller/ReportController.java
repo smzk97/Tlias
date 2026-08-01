@@ -24,7 +24,7 @@ public class ReportController {
     }
 
     /**
-     * 处理查询职位统计的查询
+     * 处理员工职位统计的查询
      * @return 成功结果对象
      */
     @GetMapping("/empJobData")
@@ -33,9 +33,23 @@ public class ReportController {
         return Result.Success(jobDataResult);
     }
 
+    /**
+     * 处理员工性别统计的查询
+     * @return 成功结果对象
+     */
     @GetMapping("/empGenderData")
     public Result GenderData(){
         List<Map<String,Object>> genderData = reportService.GenderData();
         return Result.Success(genderData);
+    }
+
+    /**
+     * 处理学员学历统计的查询
+     * @return 成功结果对象
+     */
+    @GetMapping("/studentDegreeData")
+    public Result DegreeData(){
+        List<Map<String,Integer>> degreeData = reportService.DegreeData();
+        return Result.Success(degreeData);
     }
 }
