@@ -30,4 +30,11 @@ public class GlobalExceptionHandler {
         String[] messageLists = exactMessage.split(" ");
         return Result.Defeat(messageLists[2] + "重复");
     }
+
+    // DepartmentDeleteException异常
+    @ExceptionHandler
+    public Result DepartmentException(BusinessException e){
+        log.info("业务异常，{}",e.getMessage());
+        return Result.Defeat(e.getMessage());
+    }
 }

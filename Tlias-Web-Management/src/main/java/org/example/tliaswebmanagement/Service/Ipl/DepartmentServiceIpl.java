@@ -2,10 +2,9 @@ package org.example.tliaswebmanagement.Service.Ipl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.tliaswebmanagement.EntityClass.Department;
+import org.example.tliaswebmanagement.Exception.BusinessException;
 import org.example.tliaswebmanagement.Mapper.DepartmentMapper;
 import org.example.tliaswebmanagement.Service.DepartmentService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +25,10 @@ public class DepartmentServiceIpl implements DepartmentService {
 
     @Override
     public void deleteById(Integer id) {
+        Integer count = departmentMapper.queryCountByDepartmentId(id);
+        if(count>0){
+            throw new BusinessException("该部门下有员工，不能删除");
+        }
         departmentMapper.deleteById(id);
     }
 

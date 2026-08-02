@@ -39,4 +39,11 @@ public interface DepartmentMapper {
      * @param department Department对象
      */
     void Update(Department department);
+
+    /**
+     * 根据部门id值查询部门人数
+     * @param id 部门id值
+     * @return 部门人数
+     */
+    Integer queryCountByDepartmentId(Integer id);
 }

@@ -1,5 +1,6 @@
 package org.example.tliaswebmanagement.Service;
 
+import org.example.tliaswebmanagement.EntityClass.ClassStudentCountResult;
 import org.example.tliaswebmanagement.EntityClass.JobDataResult;
 
 import java.util.List;
@@ -9,4 +10,5 @@ public interface ReportService {
     JobDataResult JobData();
     List<Map<String,Object>> GenderData();
     List<Map<String,Integer>> DegreeData();
+    ClassStudentCountResult ClassStudentData();
 }

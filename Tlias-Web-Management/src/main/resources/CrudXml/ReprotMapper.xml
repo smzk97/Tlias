@@ -49,4 +49,20 @@
         group by degree
         order by value
     </select>
+
+    <select id="ClassStudentData" resultType="java.util.Map">
+        select
+            class.name,
+            count(*) num
+        from
+            class
+                left join
+            student
+            on
+                class.id = student.class_id
+        group by
+            class.name
+        order by
+            num
+    </select>
 </mapper>

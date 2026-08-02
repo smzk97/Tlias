@@ -28,4 +28,10 @@ public interface ReportMapper {
      * @return map列表
      */
     List<Map<String,Integer>> DegreeData();
+
+    /**
+     * 查询班级人数统计数据
+     * @return map列表
+     */
+    List<Map<String,Object>> ClassStudentData();
 }

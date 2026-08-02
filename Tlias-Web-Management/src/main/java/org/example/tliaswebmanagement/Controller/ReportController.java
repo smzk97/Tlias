@@ -2,6 +2,7 @@ package org.example.tliaswebmanagement.Controller;
 
 import com.sun.net.httpserver.Authenticator;
 import lombok.extern.slf4j.Slf4j;
+import org.example.tliaswebmanagement.EntityClass.ClassStudentCountResult;
 import org.example.tliaswebmanagement.EntityClass.JobDataResult;
 import org.example.tliaswebmanagement.EntityClass.Result;
 import org.example.tliaswebmanagement.Service.ReportService;
@@ -51,5 +52,15 @@ public class ReportController {
     public Result DegreeData(){
         List<Map<String,Integer>> degreeData = reportService.DegreeData();
         return Result.Success(degreeData);
+    }
+
+    /**
+     * 处理班级人数统计的查询
+     * @return 成功结果对象
+     */
+    @GetMapping("/studentCountData")
+    public Result StudentCountData(){
+        ClassStudentCountResult classStudentCountResult = reportService.ClassStudentData();
+        return Result.Success(classStudentCountResult);
     }
 }
