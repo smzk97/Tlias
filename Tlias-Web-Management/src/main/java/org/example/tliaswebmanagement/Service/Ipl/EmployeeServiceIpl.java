@@ -2,13 +2,11 @@ package org.example.tliaswebmanagement.Service.Ipl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import org.example.tliaswebmanagement.EntityClass.Employee;
-import org.example.tliaswebmanagement.EntityClass.EmployeeQueryData;
-import org.example.tliaswebmanagement.EntityClass.EmployeeQueryParam;
-import org.example.tliaswebmanagement.EntityClass.EmployeeWorkExperience;
+import org.example.tliaswebmanagement.EntityClass.*;
 import org.example.tliaswebmanagement.Mapper.EmployeeMapper;
 import org.example.tliaswebmanagement.Mapper.EmployeeWorkExperienceMapper;
 import org.example.tliaswebmanagement.Service.EmployeeService;
+import org.example.tliaswebmanagement.Utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,17 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmployeeServiceIpl implements EmployeeService {
 
     private EmployeeMapper employeeMapper;
     private EmployeeWorkExperienceMapper employeeWorkExperienceMapper;
+    private JwtUtil jwtUtil;
     @Autowired
-    public EmployeeServiceIpl(EmployeeMapper employeeMapper, EmployeeWorkExperienceMapper employeeWorkExperienceMapper) {
+    public EmployeeServiceIpl(EmployeeMapper employeeMapper,EmployeeWorkExperienceMapper employeeWorkExperienceMapper,JwtUtil jwtUtil) {
         this.employeeMapper = employeeMapper;
         this.employeeWorkExperienceMapper = employeeWorkExperienceMapper;
+        this.jwtUtil = jwtUtil;
     }
 
     @Override
@@ -68,6 +70,20 @@ public class EmployeeServiceIpl implements EmployeeService {
     public Employee dataQueryById(Integer id) {
         Employee employee = employeeMapper.dataQueryById(id);
         return employee;
+    }
+
+    @Override
+    public LoginInfo LoginVerify(Employee employee) {
+        LoginInfo loginInfo = employeeMapper.dataQueryByUserName(employee);
+        if(loginInfo != null){
+            Map<String,Object> map = new HashMap<>();
+            map.put("id",loginInfo.getId());
+            map.put("userName",loginInfo.getUserName());
+            String token = jwtUtil.generateToken(map);
+            loginInfo.setToken(token);
+            return loginInfo;
+        }
+        return null;
     }
 
     @Override

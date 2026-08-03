@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.example.tliaswebmanagement.EntityClass.Employee;
 import org.example.tliaswebmanagement.EntityClass.EmployeeQueryData;
 import org.example.tliaswebmanagement.EntityClass.EmployeeQueryParam;
+import org.example.tliaswebmanagement.EntityClass.LoginInfo;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,4 +50,11 @@ public interface EmployeeMapper {
      * @param employee 员工信息对象
      */
     void dataUpdate(Employee employee);
+
+    /**
+     * 根据user_name查询员工信息
+     * @param employee 查询员工信息对象
+     * @return 员工信息对象
+     */
+    LoginInfo dataQueryByUserName(Employee employee);
 }

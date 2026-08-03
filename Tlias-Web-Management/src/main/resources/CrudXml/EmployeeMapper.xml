@@ -129,4 +129,11 @@
         where em.id = #{id}
     </select>
 
+    <select id="dataQueryByUserName" resultType="org.example.tliaswebmanagement.EntityClass.LoginInfo">
+        select id,user_name,name from
+            employee
+        where
+            user_name = #{userName} and pass_word = #{passWord}
+    </select>
+
 </mapper>

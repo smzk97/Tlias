@@ -5,15 +5,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.example.tliaswebmanagement.EntityClass.Employee;
+import org.example.tliaswebmanagement.EntityClass.LoginInfo;
 import org.example.tliaswebmanagement.EntityClass.Result;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.tliaswebmanagement.Service.DepartmentService;
+import org.example.tliaswebmanagement.Service.EmployeeService;
+import org.example.tliaswebmanagement.Service.Ipl.DepartmentServiceIpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
 @RequestMapping("/login")
-public class SessionController {
+public class LoginController {
+
+    private EmployeeService employeeService;
+    @Autowired
+    public LoginController(EmployeeService employeeService){
+        this.employeeService = employeeService;
+    }
 
     @GetMapping("/s1")
     public Result setCookie(HttpServletResponse res){
@@ -45,5 +55,14 @@ public class SessionController {
         log.info("s2->{}",session.hashCode());
         log.info("data->{}",data);
         return Result.Success();
+    }
+
+    @PostMapping("")
+    public Result LoginVerify(@RequestBody Employee employee){
+        LoginInfo loginInfo = employeeService.LoginVerify(employee);
+        if(loginInfo != null){
+            return Result.Success(loginInfo);
+        }
+        return Result.Defeat("用户名或者密码错误");
     }
 }
