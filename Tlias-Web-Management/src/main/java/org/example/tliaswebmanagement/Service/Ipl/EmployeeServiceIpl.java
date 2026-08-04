@@ -25,12 +25,10 @@ public class EmployeeServiceIpl implements EmployeeService {
 
     private EmployeeMapper employeeMapper;
     private EmployeeWorkExperienceMapper employeeWorkExperienceMapper;
-    private JwtUtil jwtUtil;
     @Autowired
-    public EmployeeServiceIpl(EmployeeMapper employeeMapper,EmployeeWorkExperienceMapper employeeWorkExperienceMapper,JwtUtil jwtUtil) {
+    public EmployeeServiceIpl(EmployeeMapper employeeMapper,EmployeeWorkExperienceMapper employeeWorkExperienceMapper) {
         this.employeeMapper = employeeMapper;
         this.employeeWorkExperienceMapper = employeeWorkExperienceMapper;
-        this.jwtUtil = jwtUtil;
     }
 
     @Override
@@ -79,7 +77,7 @@ public class EmployeeServiceIpl implements EmployeeService {
             Map<String,Object> map = new HashMap<>();
             map.put("id",loginInfo.getId());
             map.put("userName",loginInfo.getUserName());
-            String token = jwtUtil.generateToken(map);
+            String token = JwtUtil.generateToken(map);
             loginInfo.setToken(token);
             return loginInfo;
         }

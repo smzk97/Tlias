@@ -11,14 +11,13 @@ import java.util.Date;
 import java.util.Map;
 
 // Jwt工具类
-@Component
 public class JwtUtil {
     private static final String KEY = "c2RmamtkZmpsa2RmamFsa2ZkamZsa2RmamFsa2ZkamZsa2RmamFsa2ZkamZsa2Zk";
     private static final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(KEY.getBytes(StandardCharsets.UTF_8));
     private static final long EXPIRATION_TIME = 12 * 3600 * 1000;
 
     // 生成token
-    public String generateToken(Map<String,Object> claims){
+    public static String generateToken(Map<String,Object> claims){
         return Jwts.builder()
                 .signWith(SECRET_KEY,Jwts.SIG.HS256)
                 .claims(claims)
@@ -27,7 +26,7 @@ public class JwtUtil {
     }
 
     // 解析token
-    public Claims verifyToken(String token){
+    public static Claims verifyToken(String token){
         return Jwts.parser()
                 .verifyWith(SECRET_KEY)
                 .build()
