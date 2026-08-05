@@ -10,4 +10,14 @@
                 (#{operateEmpId},#{operateTime},#{className},#{methodName},#{methodParams},#{returnValue},#{costTime})
     </insert>
 
+    <select id="queryLogData" resultType="org.example.tliaswebmanagement.EntityClass.OperateLog">
+        select operate_log.*,employee.name
+        from
+            operate_log
+                inner join
+            employee
+            on
+                operate_log.operate_emp_id = employee.id
+    </select>
+
 </mapper>

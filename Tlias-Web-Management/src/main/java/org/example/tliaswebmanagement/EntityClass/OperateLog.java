@@ -17,5 +17,6 @@ public class OperateLog {
     private String methodName;           // 操作的方法名
     private String methodParams;         // 方法参数
     private String returnValue;          // 返回值
-    private Long costTime;            // 方法执行耗时
+    private Long costTime;               // 方法执行耗时
+    private String name;                 // 用户名
 }

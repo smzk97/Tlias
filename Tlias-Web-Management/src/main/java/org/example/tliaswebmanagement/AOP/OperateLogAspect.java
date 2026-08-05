@@ -10,7 +10,6 @@ import org.example.tliaswebmanagement.Utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -26,7 +25,7 @@ public class OperateLogAspect {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    @Around("@annotation(org.example.tliaswebmanagement.Annotation.OperateLog)")
+    @Around("@annotation(org.example.tliaswebmanagement.Annotation.OperateLogRecord)")
     public Object operateLog(ProceedingJoinPoint pjp) throws Throwable {
 
         long begin = System.currentTimeMillis();

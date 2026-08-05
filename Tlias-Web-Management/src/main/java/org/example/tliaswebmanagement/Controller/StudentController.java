@@ -1,7 +1,7 @@
 package org.example.tliaswebmanagement.Controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.tliaswebmanagement.Annotation.OperateLog;
+import org.example.tliaswebmanagement.Annotation.OperateLogRecord;
 import org.example.tliaswebmanagement.EntityClass.Result;
 import org.example.tliaswebmanagement.EntityClass.Student;
 import org.example.tliaswebmanagement.EntityClass.StudentQueryData;
@@ -49,7 +49,7 @@ public class StudentController {
      * @param ids 学员信息主键列表
      * @return 成功结果对象
      */
-    @OperateLog
+    @OperateLogRecord
     @DeleteMapping("/{ids}")
     public Result deleteStudentById(@PathVariable List<Integer> ids){
         studentService.deleteStudentById(ids);
@@ -61,7 +61,7 @@ public class StudentController {
      * @param studentData 学员信息对象
      * @return 成功结果对象
      */
-    @OperateLog
+    @OperateLogRecord
     @PostMapping("")
     public Result insertStudentData(@RequestBody Student studentData){
         studentService.insertStudentData(studentData);
@@ -73,7 +73,7 @@ public class StudentController {
      * @param studentData 学员信息对象
      * @return 成功结果对象
      */
-    @OperateLog
+    @OperateLogRecord
     @PutMapping("")
     public Result updateStudentData(@RequestBody Student studentData){
         studentService.updateStudentData(studentData);
@@ -86,7 +86,7 @@ public class StudentController {
      * @param score 违纪扣除分数
      * @return 成功结果对象
      */
-    @OperateLog
+    @OperateLogRecord
     @PutMapping("/violation/{id}/{score}")
     public Result updateStudentData(@PathVariable Integer id,@PathVariable Integer score){
         studentService.updateStudentViolationData(id,score);
