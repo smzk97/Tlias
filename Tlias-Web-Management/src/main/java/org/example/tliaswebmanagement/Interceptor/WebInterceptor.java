@@ -1,12 +1,14 @@
 package org.example.tliaswebmanagement.Interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.example.tliaswebmanagement.EntityClass.Result;
 import org.example.tliaswebmanagement.Utils.JwtUtil;
+import org.example.tliaswebmanagement.Utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -34,7 +36,8 @@ public class WebInterceptor implements HandlerInterceptor {
 
         try{
             log.info("校验token");
-            JwtUtil.verifyToken(token);
+            Claims claims = JwtUtil.verifyToken(token);
+            ThreadLocalUtil.setCurrentId(claims.get("id"));
             log.info("校验通过");
             return true;
         }catch(Exception e){

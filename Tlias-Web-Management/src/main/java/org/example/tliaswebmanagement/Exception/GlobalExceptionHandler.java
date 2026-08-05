@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
         int index = message.indexOf("Duplicate entry");
         String exactMessage = message.substring(index);
         String[] messageLists = exactMessage.split(" ");
-        return Result.Defeat(messageLists[2] + "重复");
+        return Result.Defeat(messageLists[2].replace("'","") + "重复");
     }
 
     // DepartmentDeleteException异常
