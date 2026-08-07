@@ -7,6 +7,7 @@ import org.example.tliaswebmanagement.EntityClass.ClassQueryParam;
 import org.example.tliaswebmanagement.EntityClass.Result;
 import org.example.tliaswebmanagement.Service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
