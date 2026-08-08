@@ -5,6 +5,7 @@
 
         <encoder>
             <pattern>%date %-5level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
 

@@ -1,9 +1,10 @@
 package org.example.tliaswebmanagement.EntityClass;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.*;
+import java.time.LocalDateTime;
 
 // 部门信息实体类
 

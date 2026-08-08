@@ -1,12 +1,11 @@
 package org.example.tliaswebmanagement.Filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.example.tliaswebmanagement.EntityClass.Result;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.tliaswebmanagement.Utils.JwtUtil;
 
 import java.io.IOException;
